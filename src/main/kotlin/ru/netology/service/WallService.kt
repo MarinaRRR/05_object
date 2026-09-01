@@ -4,8 +4,25 @@ import ru.netology.data.Post
 
 class WallService {
     private var posts = emptyArray<Post>()
+    private var post_id: Long = 0
+
+    fun clear() {
+        posts = emptyArray()
+        post_id = 0
+    }
+
+    fun get(id: Long): Any {
+        for ((index, post) in posts.withIndex()) {
+            if (post.id == id) {
+                return post
+            }
+        }
+        return false
+    }
 
     fun add(post: Post): Post {
+        post.id = post_id
+        post_id++
         posts += post
         return posts.last()
     }
@@ -39,6 +56,8 @@ class WallService {
             }
         }
     }
+
+
 }
 
 

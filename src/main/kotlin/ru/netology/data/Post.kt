@@ -2,7 +2,7 @@ package ru.netology.data
 
 data class
 Post(
-    val id: Long,
+    var id: Long = 1,
     val authorId: Long,
     val authorName: String,
     val content: String,
