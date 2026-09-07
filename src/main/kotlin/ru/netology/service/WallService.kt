@@ -27,6 +27,16 @@ class WallService {
         return posts.last()
     }
 
+    fun repost(post: Post): Post {
+        if (post.original == null) {
+            return add(post)
+        }
+
+        val original = post.original
+        return original
+
+    }
+
     fun update(post: Post): Boolean {
         for ((index, item) in posts.withIndex()) {
             if (item.id == post.id) {

@@ -7,6 +7,7 @@ Post(
     val authorName: String,
     val content: String,
     val created: Long,
+    val original: Post?,
     val likes: Int = 0,
     val reply_owner_id: Int,
     val reply_post_id: Int,

@@ -20,6 +20,7 @@ class MainKtTest {
             authorName = "Нетология2",
             content = "Новая Нетология2",
             created = 1590075360,
+            original = null,
             likes = 22,
             reply_owner_id = 5,
             reply_post_id = 6,
@@ -33,6 +34,58 @@ class MainKtTest {
         assertEquals(original ,result)
     }
 
+    fun repostNull() {
+        var original = Post(
+            authorId = 2,
+            authorName = "Нетология2",
+            content = "Новая Нетология2",
+            created = 1590075360,
+            original = null,
+            likes = 22,
+            reply_owner_id = 5,
+            reply_post_id = 6,
+            post_type = "post",
+            comments = Comment(11)
+        )
+
+        val service = WallService()
+        val result = service.repost(original)
+
+        assertEquals(original ,result)
+    }
+
+    fun repostNotNull() {
+        var original2 = Post(
+            authorId = 2,
+            authorName = "Нетология2",
+            content = "Новая Нетология2",
+            created = 1590075360,
+            original = null,
+            likes = 22,
+            reply_owner_id = 5,
+            reply_post_id = 6,
+            post_type = "post",
+            comments = Comment(11)
+        )
+        var original = Post(
+            authorId = 2,
+            authorName = "Нетология2",
+            content = "Новая Нетология2",
+            created = 1590075360,
+            original = original2,
+            likes = 22,
+            reply_owner_id = 5,
+            reply_post_id = 6,
+            post_type = "repost",
+            comments = Comment(11)
+        )
+
+        val service = WallService()
+        val result = service.repost(original)
+
+        assertEquals(original ,result)
+    }
+
     @Test
     fun updatePost() {
         val original = Post(
@@ -40,6 +93,7 @@ class MainKtTest {
             authorName = "Нетология",
             content = "Новая Нетология",
             created = 1590075360,
+            original = null,
             likes = 22,
             reply_owner_id = 5,
             reply_post_id = 6,
@@ -52,6 +106,7 @@ class MainKtTest {
             authorName = "Нетология2",
             content = "Новая Нетология2",
             created = 1590075360,
+            original = original,
             likes = 22,
             reply_owner_id = 5,
             reply_post_id = 6,
@@ -66,6 +121,7 @@ class MainKtTest {
             authorName = "Нетология3",
             content = "Новая Нетология3",
             created = 1590075360,
+            original = original,
             likes = 22,
             reply_owner_id = 5,
             reply_post_id = 6,
@@ -83,6 +139,7 @@ class MainKtTest {
             authorName = "Нетология",
             content = "Новая Нетология",
             created = 1590075360,
+            original = null,
             likes = 22,
             reply_owner_id = 5,
             reply_post_id = 6,
@@ -97,6 +154,7 @@ class MainKtTest {
             authorName = "Нетология3",
             content = "Новая Нетология3",
             created = 1590075360,
+            original = original,
             likes = 22,
             reply_owner_id = 5,
             reply_post_id = 6,
