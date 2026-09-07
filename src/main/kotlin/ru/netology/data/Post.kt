@@ -17,7 +17,8 @@ Post(
     val can_pin: Boolean = true,
     val can_delete: Boolean = true,
     val can_edit: Boolean = true,
-    val comments: Comment
+    val comments: Comment,
+    var attachment: List<Attachment>? = emptyList(),
 )
 
 

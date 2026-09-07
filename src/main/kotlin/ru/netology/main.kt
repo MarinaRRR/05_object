@@ -1,7 +1,6 @@
 package ru.netology
 
-import ru.netology.data.Comment
-import ru.netology.data.Post
+import ru.netology.data.*
 import ru.netology.service.WallService
 
 fun main() {
@@ -18,6 +17,8 @@ fun main() {
 //
 //    val (id, _, author) = original
 //    println("$id, $author")
+    val vid = Video (5, 3, "video1", "/upload/video/video1.mov", "pum purum")
+    val attachment: Attachment = VideoAttachment(vid)
 
     val original = Post(
         authorId = 1,
@@ -57,8 +58,10 @@ fun main() {
         reply_owner_id = 5,
         reply_post_id = 6,
         post_type = "post",
-        comments = Comment(11)
+        comments = Comment(11),
+        attachment = mutableListOf(attachment)
     )
+
     service.update(original2)
     service.likeById(1)
     service.removeById(0)
