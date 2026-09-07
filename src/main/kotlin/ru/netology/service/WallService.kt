@@ -28,13 +28,8 @@ class WallService {
     }
 
     fun repost(post: Post): Post {
-        if (post.original == null) {
-            return add(post)
-        }
-
-        val original = post.original
-        return original
-
+        val original = post.original ?: post
+        return add(original)
     }
 
     fun update(post: Post): Boolean {

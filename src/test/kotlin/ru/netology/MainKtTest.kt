@@ -34,6 +34,7 @@ class MainKtTest {
         assertEquals(original ,result)
     }
 
+    @Test
     fun repostNull() {
         var original = Post(
             authorId = 2,
@@ -54,6 +55,7 @@ class MainKtTest {
         assertEquals(original ,result)
     }
 
+    @Test
     fun repostNotNull() {
         var original2 = Post(
             authorId = 2,
@@ -67,23 +69,24 @@ class MainKtTest {
             post_type = "post",
             comments = Comment(11)
         )
-        var original = Post(
-            authorId = 2,
-            authorName = "Нетология2",
-            content = "Новая Нетология2",
+        val original = Post(
+            authorId = 1,
+            authorName = "Нетология",
+            content = "Новая Нетология",
             created = 1590075360,
             original = original2,
             likes = 22,
             reply_owner_id = 5,
             reply_post_id = 6,
-            post_type = "repost",
-            comments = Comment(11)
+            post_type = "post",
+            can_pin = false,
+            comments = Comment(22)
         )
 
         val service = WallService()
         val result = service.repost(original)
 
-        assertEquals(original ,result)
+        assertEquals(original2 ,result)
     }
 
     @Test
