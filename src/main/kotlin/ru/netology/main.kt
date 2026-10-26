@@ -1,7 +1,5 @@
 package ru.netology
-
-import ru.netology.data.Comment
-import ru.netology.data.Post
+import ru.netology.data.*
 import ru.netology.service.WallService
 
 fun main() {
@@ -18,6 +16,8 @@ fun main() {
 //
 //    val (id, _, author) = original
 //    println("$id, $author")
+    val vid = Video (5, 3, "video1", "/upload/video/video1.mov", "pum purum")
+    val attachment: Attachment = VideoAttachment(vid)
 
     val original = Post(
         authorId = 1,
@@ -26,11 +26,11 @@ fun main() {
         created = 1590075360,
         original = null,
         likes = 22,
-        reply_owner_id = 5,
-        reply_post_id = 6,
-        post_type = "post",
-        can_pin = false,
-        comments = Comment(22)
+        replyOwnerId = 5,
+        replyPostId = 6,
+        postType = "post",
+        canPin = false,
+        comments = Comment(22, 1)
     )
     var original2 = Post(
         authorId = 2,
@@ -39,9 +39,9 @@ fun main() {
         created = 1590075360,
         original = original,
         likes = 22,
-        reply_owner_id = 5,
-        reply_post_id = 6,
-        post_type = "post",
+        replyOwnerId = 5,
+        replyPostId = 6,
+        postType = "post",
         comments = Comment(11)
     )
     val service = WallService()
@@ -54,16 +54,24 @@ fun main() {
         created = 1590075360,
         original = original,
         likes = 22,
-        reply_owner_id = 5,
-        reply_post_id = 6,
-        post_type = "post",
-        comments = Comment(11)
+        replyOwnerId = 5,
+        replyPostId = 6,
+        postType = "post",
+        comments = Comment(11),
+        attachment = mutableListOf(attachment)
     )
+    val comment1 = Comment(
+        id = 1,
+        text = "comment1"
+    )
+
     service.update(original2)
     service.likeById(1)
     service.removeById(0)
     println(service.get(1))
     println(service.get(0))
+    println(service.createComment(1, comment1))
+
 }
 
 

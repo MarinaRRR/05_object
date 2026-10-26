@@ -1,10 +1,17 @@
 package ru.netology.data
 
+import java.time.LocalDateTime
+
 data class
 Comment(
-    val count: Int,
-    val can_post: Boolean = true,
-    val groups_can_post: Boolean = true,
-    val can_close: Boolean = true,
-    val can_open: Boolean = true
+    var id: Long = 0,
+    val fromId: Long = 0,
+    val date: LocalDateTime? = null,
+    val text: String = "",
+    val deleted: Boolean = false
+)
+data class ReportComment(
+    val ownerId: Int = 0,
+    val commentId: Long = 0,
+    var reasonCode: Int = 0
 )
