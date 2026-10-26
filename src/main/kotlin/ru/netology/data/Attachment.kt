@@ -8,7 +8,7 @@ data class AudioAttachment(val audio: Audio) : Attachment("audio")
 
 class Photo(
     val id: Long,
-    val owner_id: Long,
+    val ownerId: Long,
     val title: String,
     val url: String,
     val description: String
@@ -16,7 +16,7 @@ class Photo(
 
 class Audio(
     val id: Long,
-    val owner_id: Long,
+    val ownerId: Long,
     val title: String,
     val url: String,
     val description: String
@@ -24,7 +24,7 @@ class Audio(
 
 class Video(
     val id: Long,
-    val owner_id: Long,
+    val ownerId: Long,
     val title: String,
     val url: String,
     val description: String

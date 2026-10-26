@@ -1,5 +1,4 @@
 package ru.netology
-
 import ru.netology.data.*
 import ru.netology.service.WallService
 
@@ -27,11 +26,11 @@ fun main() {
         created = 1590075360,
         original = null,
         likes = 22,
-        reply_owner_id = 5,
-        reply_post_id = 6,
-        post_type = "post",
-        can_pin = false,
-        comments = Comment(22)
+        replyOwnerId = 5,
+        replyPostId = 6,
+        postType = "post",
+        canPin = false,
+        comments = Comment(22, 1)
     )
     var original2 = Post(
         authorId = 2,
@@ -40,9 +39,9 @@ fun main() {
         created = 1590075360,
         original = original,
         likes = 22,
-        reply_owner_id = 5,
-        reply_post_id = 6,
-        post_type = "post",
+        replyOwnerId = 5,
+        replyPostId = 6,
+        postType = "post",
         comments = Comment(11)
     )
     val service = WallService()
@@ -55,11 +54,15 @@ fun main() {
         created = 1590075360,
         original = original,
         likes = 22,
-        reply_owner_id = 5,
-        reply_post_id = 6,
-        post_type = "post",
+        replyOwnerId = 5,
+        replyPostId = 6,
+        postType = "post",
         comments = Comment(11),
         attachment = mutableListOf(attachment)
+    )
+    val comment1 = Comment(
+        id = 1,
+        text = "comment1"
     )
 
     service.update(original2)
@@ -67,6 +70,8 @@ fun main() {
     service.removeById(0)
     println(service.get(1))
     println(service.get(0))
+    println(service.createComment(1, comment1))
+
 }
 
 
