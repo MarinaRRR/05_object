@@ -4,9 +4,11 @@ import org.junit.Test
 import org.junit.Assert.*
 import org.junit.Before
 import ru.netology.data.Comment
+import ru.netology.data.Note
 import ru.netology.data.Post
 import ru.netology.exeptions.NotFoundException
 import ru.netology.exeptions.PostNotFoundException
+import ru.netology.service.NoteService
 import ru.netology.service.WallService
 import kotlin.io.println
 
@@ -18,7 +20,7 @@ class MainKtTest {
 
     @Test
     fun addPost() {
-        var original = Post(
+        val original = Post(
             authorId = 2,
             authorName = "Нетология2",
             content = "Новая Нетология2",
@@ -28,7 +30,6 @@ class MainKtTest {
             replyOwnerId = 5,
             replyPostId = 6,
             postType = "post",
-            comments = Comment(11)
         )
 
         val service = WallService()
@@ -39,7 +40,7 @@ class MainKtTest {
 
     @Test
     fun repostNull() {
-        var original = Post(
+        val original = Post(
             authorId = 2,
             authorName = "Нетология2",
             content = "Новая Нетология2",
@@ -49,7 +50,6 @@ class MainKtTest {
             replyOwnerId = 5,
             replyPostId = 6,
             postType = "post",
-            comments = Comment(11)
         )
 
         val service = WallService()
@@ -70,7 +70,6 @@ class MainKtTest {
             replyOwnerId = 5,
             replyPostId = 6,
             postType = "post",
-            comments = Comment(11)
         )
         val original = Post(
             authorId = 1,
@@ -83,7 +82,6 @@ class MainKtTest {
             replyPostId = 6,
             postType = "post",
             canPin = false,
-            comments = Comment(22)
         )
 
         val service = WallService()
@@ -105,7 +103,6 @@ class MainKtTest {
             replyPostId = 6,
             postType = "post",
             canPin = false,
-            comments = Comment(22)
         )
         var original2 = Post(
             authorId = 2,
@@ -117,7 +114,6 @@ class MainKtTest {
             replyOwnerId = 5,
             replyPostId = 6,
             postType = "post",
-            comments = Comment(11)
         )
         val service = WallService()
         service.add(original)
@@ -133,7 +129,6 @@ class MainKtTest {
             replyOwnerId = 5,
             replyPostId = 6,
             postType = "post",
-            comments = Comment(11)
         )
         val result = service.update(original2)
         assertEquals(true ,result)
@@ -152,7 +147,6 @@ class MainKtTest {
             replyPostId = 6,
             postType = "post",
             canPin = false,
-            comments = Comment(22)
         )
         val service = WallService()
         service.add(original)
@@ -167,7 +161,6 @@ class MainKtTest {
             replyOwnerId = 5,
             replyPostId = 6,
             postType = "post",
-            comments = Comment(11)
         )
         val result = service.update(original2)
         assertEquals(false ,result)
@@ -175,53 +168,18 @@ class MainKtTest {
 
     @Test
     fun createComment() {
-        val comment1 = Comment(
-            id = 1,
-            text = "comment1"
-        )
-        val original = Post(
-            authorId = 1,
-            authorName = "Нетология",
-            content = "Новая Нетология",
-            created = 1590075360,
-            original = null,
-            likes = 22,
-            replyOwnerId = 5,
-            replyPostId = 6,
-            postType = "post",
-            canPin = false,
-            comments = Comment(22)
-        )
-
         val service = WallService()
-        service.add(original)
-        val result = service.createComment(0, comment1)
-        assertEquals(comment1 ,result)
+        service.add(Post(0))
+        service.add(Post(1, authorName = "kkkk"))
+        val result = service.createComment(0, Comment(0, text = "Text"))
+        assertEquals(Comment(0, text = "Text") ,result)
     }
 
-    @Test(expected = PostNotFoundException::class)
+    @Test(expected = NotFoundException::class)
     fun shouldThrow() {
-        val comment1 = Comment(
-            id = 1,
-            text = "comment1"
-        )
-        val original = Post(
-            authorId = 1,
-            authorName = "Нетология",
-            content = "Новая Нетология",
-            created = 1590075360,
-            original = null,
-            likes = 22,
-            replyOwnerId = 5,
-            replyPostId = 6,
-            postType = "post",
-            canPin = false,
-            comments = Comment(22)
-        )
-
-        val service = WallService()
-        service.add(original)
-        val result = service.createComment(10, comment1)
+        val noteService = NoteService
+        noteService.add(Note(1))
+        val result = noteService.createComment(5, Comment(1, text = "Text"))
     }
 
     @Test
@@ -241,7 +199,6 @@ class MainKtTest {
             replyPostId = 6,
             postType = "post",
             canPin = false,
-            comments = Comment(22)
         )
 
         val service = WallService()
@@ -268,7 +225,6 @@ class MainKtTest {
             replyPostId = 6,
             postType = "post",
             canPin = false,
-            comments = Comment(22)
         )
 
         val service = WallService()
@@ -294,7 +250,6 @@ class MainKtTest {
             replyPostId = 6,
             postType = "post",
             canPin = false,
-            comments = Comment(22)
         )
 
         val service = WallService()
@@ -320,7 +275,6 @@ class MainKtTest {
             replyPostId = 6,
             postType = "post",
             canPin = false,
-            comments = Comment(22)
         )
 
         val service = WallService()

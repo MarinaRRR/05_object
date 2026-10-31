@@ -1,5 +1,6 @@
 package ru.netology
 import ru.netology.data.*
+import ru.netology.service.NoteService
 import ru.netology.service.WallService
 
 fun main() {
@@ -19,6 +20,7 @@ fun main() {
     val vid = Video (5, 3, "video1", "/upload/video/video1.mov", "pum purum")
     val attachment: Attachment = VideoAttachment(vid)
 
+
     val original = Post(
         authorId = 1,
         authorName = "Нетология",
@@ -30,7 +32,6 @@ fun main() {
         replyPostId = 6,
         postType = "post",
         canPin = false,
-        comments = Comment(22, 1)
     )
     var original2 = Post(
         authorId = 2,
@@ -42,7 +43,6 @@ fun main() {
         replyOwnerId = 5,
         replyPostId = 6,
         postType = "post",
-        comments = Comment(11)
     )
     val service = WallService()
     service.add(original)
@@ -57,7 +57,6 @@ fun main() {
         replyOwnerId = 5,
         replyPostId = 6,
         postType = "post",
-        comments = Comment(11),
         attachment = mutableListOf(attachment)
     )
     val comment1 = Comment(
@@ -67,10 +66,23 @@ fun main() {
 
     service.update(original2)
     service.likeById(1)
-    service.removeById(0)
-    println(service.get(1))
-    println(service.get(0))
-    println(service.createComment(1, comment1))
+    //service.removeById(1, Post::class.java)
+    //println(service.getById(0, Post::class.java))
+    //println(service.getById(1, Post::class.java))
+    //println(service.get(Post::class.java))
+    //service.clear()
+    //println(service.get(Post::class.java))
+    //println(service.createComment(1, comment1))
+
+    /*val noteService = NoteService
+    noteService.add(Note(1))
+    noteService.createComment(1, Comment(1, text = "Text"))
+    noteService.createComment(1, Comment(2, text = "Text2"))
+    println(noteService.getComments(1))
+    noteService.deleteComment(1, 1)
+    //noteService.print()
+    noteService.restoreComment(1, 1)*/
+    //noteService.print()noteService
 
 }
 

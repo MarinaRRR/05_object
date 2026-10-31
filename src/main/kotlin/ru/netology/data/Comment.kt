@@ -2,13 +2,12 @@ package ru.netology.data
 
 import java.time.LocalDateTime
 
-data class
-Comment(
+data class Comment(
     var id: Long = 0,
     val fromId: Long = 0,
     val date: LocalDateTime? = null,
     val text: String = "",
-    val deleted: Boolean = false
+    var deleted: Boolean = false
 )
 data class ReportComment(
     val ownerId: Int = 0,
